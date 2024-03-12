@@ -16,7 +16,7 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // this is language detect middleware
+       // this is language detect middleware
         try {
             $prefferedLang = $request->header('lang');
             if ($prefferedLang)

@@ -18,8 +18,8 @@ class AuthController extends Controller
     public function signUp(Request $request)
     {
         try {
-            $validateData = $request->validate(['name' => 'required|string|max:255', 'email' => 'required|string|email|max:255|unique:users', 'password' => 'required|string|min:8']);
-            $user = User::Create(['name' => $validateData['name'], 'email' => $validateData['email'], 'password' => $validateData['password']]);
+            $validateData = $request->validate(['name' => 'required|string|max:255', 'email' => 'required|string|email|max:255|unique:users', 'password' => 'required|string|min:8','preferredDateFormat'=>'required|string']);
+            $user = User::Create(['name' => $validateData['name'], 'email' => $validateData['email'], 'password' => $validateData['password'],'preferredDateFormat'=>$validateData['preferredDateFormat']]);
             $student = Student::create(['user_ID' => $user->id]);
             return response()->json(['message' => 'student created succeffully'], 201);
         } catch (ValidationException $e) {
